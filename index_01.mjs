@@ -23,24 +23,33 @@ app.set('port', process.env.PORT || 3000);
 
 app.get('/findOne', async (req,res) => {
     try {
-        const database = client.db('sample_mflix');
-        const movies = database.collection('movies');
-        // Query for a movie that has the title 'Back to the Future'
-        const query = { title: 'Back to the Future' };
-        const movie = await movies.findOne(query);
-        console.log(movie);
+        const database = client.db('sample_airbnb');
+        const coll = database.collection('listingsAndReviews');
+
+        const filter = {property_type: req.query.property_type, bedrooms: parseInt(req.query.bedrooms), beds: parseInt(req.query.beds)};
+
+        const listing = await coll.findOne(filter);
+
+        console.log(req.query);
 
         res.type('json');
         res.status(200);
         res.json({
-            movie: movie
+          listing: listing['_id'], 
+          listing_url: listing['listing_url'], 
+          name: listing['name'], 
+          summary: listing['summary'], 
+          property_type: listing['property_type'], 
+          cancellation_policy: listing['cancellation_policy'], 
+          bedrooms: listing['bedrooms'], 
+          beds: listing['beds']
         });
 
     } catch (error) {
       console.log(error)  
     } finally {
         // Ensures that the client will close when you finish/error
-        await client.close();
+        // await client.close();
     }
 
 
