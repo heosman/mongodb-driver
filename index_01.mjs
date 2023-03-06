@@ -40,7 +40,6 @@ app.get('/findOne', async (req,res) => {
           name: listing['name'], 
           summary: listing['summary'], 
           property_type: listing['property_type'], 
-          cancellation_policy: listing['cancellation_policy'], 
           bedrooms: listing['bedrooms'], 
           beds: listing['beds']
         });
