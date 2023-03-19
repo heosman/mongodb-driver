@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <title>Restaurant Search</title>
+  </head>
+  <body>
+    <main>
+        <h1>Restaurant Search</h1>  
+        <form>
+          <label>Restaurant name:</label>
+          <input id="name" type="text"  value="Carvel Ice Cream"><br><br>
+        </form>
+        <button onclick="fetchRestaurant()">Get result!</button>
+        <ul id="find-restaurant"></ul>
+    </main>
+        <script>
+
+            async function fetchRestaurant() {
+
+            const name_text = document.getElementById("name").value;
+            const name_type_number = parseInt(name_text, 10);
+
+            const api_endpoint = `http://localhost:3000/findOne?name=${name_text}`;
+            const response = await fetch(api_endpoint);
+
+            const json_response = await response.json();
+            const ul_result = document.getElementById("find-restaurant");
+            ul_result.innerHTML = "";
+
+            for (let i in json_response) {
+              const li = document.createElement('li');
+              li.innerText = i + ":    " + json_response[i];
+              ul_result.appendChild(li);
+            }
+            }
+
+        </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+h1 {
+    color: rgb(86, 98, 74);
+  }
+
+html {
+    margin: 0 auto;
+    text-align: center;
+    width: 50%;
+    background-color: rgb(235, 239, 230);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: rgb(220, 228, 212);
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 16px;
+    border-color: rgb(166, 176, 156);
+}
+
+form {
+    padding: 10px;
+}
+
+button {
+    background-color: rgb(209, 215, 202);
+    padding: 8px;
+    border-style: inset;
+    border-color: rgb(166, 176, 156);
+    border-radius: 8px;
+}
+
+button:active {
+    background-color: rgb(166, 176, 156);
+}
+
+input {
+    background-color: rgb(235, 239, 230);
+    padding: 4px;
+    border-style: inset;
+    border-color:rgb(166, 176, 156);
+    border-radius: 6px;
+}
+
+ul {
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 75%;
+    padding: 20px;
+    list-style-type: none;
+    border-radius: 10px;
+    background-color: rgb(209, 215, 202);
+}
+
+li {
+    text-align: left;
+    padding: 5px;
+}

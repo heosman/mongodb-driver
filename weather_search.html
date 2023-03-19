@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <title>Weatherdata Search</title>
+  </head>
+  <body>
+    <main>
+        <h1>Weatherdata Search</h1>  
+        <form>
+          <h2>Position</h2>
+          <label>Type:</label>
+          <input id="type" type="text"  value="Point"><br><br>
+          <label>X:</label>
+          <input id="x" name="coord1" type="number"  value="-47.9"><br><br>
+          <label>Y:</label>
+          <input id="y" name="coord2" type="number"  value="47.6"><br><br>
+        </form>
+        <button onclick="fetchData()">Get result!</button>
+        <ul id="find-weatherdata"></ul>
+    </main>
+        <script>
+
+            async function fetchData() {
+
+              const type_text = document.getElementById("type").value;
+
+              const x_text = document.getElementById("x").value;
+
+              const y_text = document.getElementById("y").value;
+
+              const api_endpoint = `http://localhost:3000/findOne?type=${type_text}&x=${x_text}&y=${y_text}`;
+              const response = await fetch(api_endpoint);
+
+              const json_response = await response.json();
+              const ul_result = document.getElementById("find-weatherdata");
+              ul_result.innerHTML = "";
+
+              for (let i in json_response) {
+                const li = document.createElement('li');
+                li.innerText = i + ":    " + JSON.stringify(json_response[i], null, 2).replaceAll("{", "").replaceAll("}", "").replaceAll("\"", "").replaceAll(",", "");
+                ul_result.appendChild(li);
+              }
+            }
+
+        </script>
+  </body>
+</html>
